@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from "zod/v3";
 
 export const widgetTypeSchema = z.enum([
   "table", "cards", "text", "image", "video", "agenda", "calendar",

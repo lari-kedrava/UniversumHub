@@ -59,4 +59,4 @@ novo módulo de negócio deve seguir. Veja `docs/ARCHITECTURE.md`.
 
 ## Autoria
 
-O sistema **Agenda TV - Minas Ponto** foi criado por **Larissa Terezinha Rosa**.
+O sistema foi criado por **Larissa Terezinha Rosa**.

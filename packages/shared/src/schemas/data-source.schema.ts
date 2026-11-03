@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from "zod/v3";
 
 export const dataSourceKindSchema = z.enum([
   "internal", "plugin", "rest_api", "sql", "csv", "excel", "webhook",

@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from "zod/v3";
 
 export const permissionResources = ["clients", "dashboards", "widgets", "data_sources", "users", "permissions", "plugins", "projects", "tasks", "calendar"] as const;
 export const permissionActions = ["create", "read", "update", "delete", "manage"] as const;

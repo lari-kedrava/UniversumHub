@@ -1,5 +1,5 @@
 import type { FastifyInstance } from "fastify";
-import { z } from "zod";
+import { z } from "zod/v3";
 import { supabaseAdmin } from "../../config/supabase.js";
 import { authHook } from "../../core/http/auth-hook.js";
 

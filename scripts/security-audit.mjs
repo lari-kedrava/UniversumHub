@@ -1,6 +1,6 @@
 import { spawnSync } from "node:child_process";
 
-const accepted = new Set(["GHSA-qwww-vcr4-c8h2"]);
+const accepted = new Set();
 const packageManager = process.env.npm_execpath;
 if (!packageManager) {
   process.stderr.write("Execute a auditoria por meio do pnpm.\n");

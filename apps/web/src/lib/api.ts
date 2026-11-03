@@ -1,10 +1,13 @@
 import { getSupabaseClient } from "./supabase";
 
 const API_URL =
-  import.meta.env.VITE_API_URL ??
-  (import.meta.env.DEV ? "http://localhost:3333" : "https://agenda-tv-minas-ponto-api.vercel.app");
+  import.meta.env.VITE_API_URL?.trim() ||
+  (import.meta.env.DEV ? "http://localhost:3333" : undefined);
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
+  if (!API_URL) {
+    throw new Error("VITE_API_URL não foi configurada para produção.");
+  }
   const { data } = await getSupabaseClient().auth.getSession();
   const token = data.session?.access_token;
 
