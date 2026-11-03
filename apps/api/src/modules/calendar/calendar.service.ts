@@ -1,0 +1,3 @@
+import type { CreateCalendarEventInput, UpdateCalendarEventInput } from "@universum/shared";
+import { calendarRepository } from "./calendar.repository.js";
+export const calendarService = { list: (companyId: string, from?: string, to?: string) => calendarRepository.findAll(companyId, from, to), get: (companyId: string, id: string) => calendarRepository.findById(companyId, id), create: (companyId: string, ownerId: string, input: CreateCalendarEventInput) => calendarRepository.create(companyId, ownerId, input), update: (companyId: string, id: string, input: UpdateCalendarEventInput) => calendarRepository.update(companyId, id, input), remove: (companyId: string, id: string) => calendarRepository.delete(companyId, id) };

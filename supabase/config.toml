@@ -1,0 +1,11 @@
+[functions.auvo-sync]
+verify_jwt = false
+
+[functions.auvo-sync-request]
+verify_jwt = true
+
+[functions.auvo-sync-resources]
+verify_jwt = false
+
+[functions.auvo-webhook]
+verify_jwt = false

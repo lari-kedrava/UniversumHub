@@ -1,0 +1,3 @@
+import type { CreateProjectInput, UpdateProjectInput } from "@universum/shared";
+import { projectsRepository } from "./projects.repository.js";
+export const projectsService = { list: (companyId: string) => projectsRepository.findAll(companyId), get: (companyId: string, id: string) => projectsRepository.findById(companyId, id), create: (companyId: string, input: CreateProjectInput) => projectsRepository.create(companyId, input), update: (companyId: string, id: string, input: UpdateProjectInput) => projectsRepository.update(companyId, id, input), remove: (companyId: string, id: string) => projectsRepository.delete(companyId, id) };

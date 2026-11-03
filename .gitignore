@@ -1,0 +1,66 @@
+# Dependencias e artefatos de build
+node_modules/
+dist/
+build/
+coverage/
+.turbo/
+
+# Variaveis de ambiente e configuracoes locais confidenciais
+.env
+.env.*
+.envrc
+.direnv/
+!.env.example
+!.env.*.example
+
+# Chaves privadas, certificados e credenciais
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.crt
+*.cer
+id_rsa*
+id_ed25519*
+credentials.json
+credentials.*.json
+secrets.json
+secrets.*.json
+service-account*.json
+google-credentials*.json
+auth.json
+token.json
+*.secret
+*.secrets
+.npmrc
+.pypirc
+
+# Dados e configuracoes locais de ferramentas
+.vercel/
+supabase/.branches/
+supabase/.temp/
+.localappdata/
+*.sqlite
+*.sqlite3
+*.db
+*.dump
+*.backup
+*.bak
+*.tmp
+*.temp
+*.tgz
+work/
+
+# Logs, caches e arquivos do sistema/editor
+*.log
+*.cache
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+.pnpm-store/
+test-results/
+playwright-report/
+reports/

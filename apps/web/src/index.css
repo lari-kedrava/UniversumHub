@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Fonte exclusiva do painel de TV (Layout 2) — não afeta o restante do app. */
+.tv-monitor-panel {
+  font-family: "Barlow Condensed", "Arial Narrow", "Segoe UI", Arial, sans-serif;
+}
+
+@keyframes tv-call-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0), 0 8px 28px rgba(0, 0, 0, 0.35); }
+  50% { box-shadow: 0 0 0 6px rgba(52, 211, 153, 0.18), 0 8px 28px rgba(0, 0, 0, 0.35); }
+}
+
+.tv-call-glow {
+  animation: tv-call-glow 1.8s ease-in-out infinite;
+}
+
+@keyframes tv-client-marquee {
+  0%, 15% { transform: translateX(0); }
+  85%, 100% { transform: translateX(var(--tv-marquee-distance, 0)); }
+}
+
+.tv-client-marquee {
+  animation: tv-client-marquee var(--tv-marquee-duration, 14s) ease-in-out infinite alternate;
+}
+
+:root { color-scheme: dark; }
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="light"] body, :root[data-theme="light"] .bg-surface { background-color: #f3f6fb !important; color: #172033; }
+:root[data-theme="light"] .bg-surface-raised { background-color: #ffffff !important; }
+:root[data-theme="light"] .border-surface-border { border-color: #d7deea !important; }
+:root[data-theme="light"] .text-white, :root[data-theme="light"] .text-slate-100, :root[data-theme="light"] .text-slate-200 { color: #172033 !important; }
+:root[data-theme="light"] .text-slate-300, :root[data-theme="light"] .text-slate-400 { color: #526078 !important; }
+:root[data-theme="light"] input, :root[data-theme="light"] select, :root[data-theme="light"] textarea { color: #172033; }
+
+/* O seletor nativo de data precisa ficar claro para manter os dias legíveis. */
+input[type="date"] {
+  color-scheme: light;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  filter: invert(1);
+  opacity: 1;
+}
+:root[data-theme="light"] input[type="date"]::-webkit-calendar-picker-indicator { filter: none; }
+
+/* O tema da tela da agenda é independente do tema administrativo. */
+:root .agenda-display-light .text-white { color: #0f172a !important; }
+:root .agenda-display-light .text-slate-200, :root .agenda-display-light .text-slate-300 { color: #334155 !important; }
+:root .agenda-display-light .text-sky-300 {
+  color: #075985 !important;
+  font-weight: 800;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.65);
+}
+:root .agenda-display-light .border-white\/10, :root .agenda-display-light .border-white\/15 { border-color: #cbd5e1 !important; }
+:root .agenda-display-dark .text-white { color: #fff !important; }
+:root .agenda-display-dark .text-slate-200 { color: #e2e8f0 !important; }
+:root .agenda-display-dark .text-slate-300 { color: #cbd5e1 !important; }
+
+/* Em monitores grandes e TVs, prioriza leitura a distância na tela da agenda. */
+@media (min-width: 1280px) {
+  [data-display-size="tv2"] .text-\[10px\] { font-size: 1rem !important; }
+  [data-display-size="tv2"] .text-xs { font-size: clamp(1.1rem, 1.1vw, 1.4rem) !important; line-height: 1.35; }
+  [data-display-size="tv2"] .text-sm { font-size: clamp(1.3rem, 1.3vw, 1.7rem) !important; line-height: 1.4; }
+  [data-display-size="tv2"] .text-lg { font-size: clamp(1.6rem, 1.6vw, 2.1rem) !important; }
+  [data-display-size="tv2"] .text-xl { font-size: clamp(1.9rem, 1.9vw, 2.5rem) !important; }
+  [data-display-size="tv2"] .text-2xl { font-size: clamp(2.3rem, 2.4vw, 3.1rem) !important; }
+}
+
+@keyframes urgent-alert-flash { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .45; transform: scale(1.01); } }
+.urgent-alert-flash { animation: urgent-alert-flash .55s steps(2, end) infinite; }
+
+@layer base {
+  body {
+    @apply bg-surface text-slate-100 font-sans antialiased;
+  }
+}

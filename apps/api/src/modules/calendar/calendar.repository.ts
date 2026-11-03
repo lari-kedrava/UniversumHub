@@ -1,0 +1,11 @@
+import type { CalendarEvent, CreateCalendarEventInput, UpdateCalendarEventInput } from "@universum/shared";
+import { supabaseAdmin } from "../../config/supabase.js";
+const toEvent = (row: Record<string, unknown>): CalendarEvent => ({ id: row.id as string, companyId: row.company_id as string, title: row.title as string, description: row.description as string | null, startsAt: row.starts_at as string, endsAt: row.ends_at as string, allDay: row.all_day as boolean, color: row.color as string, ownerId: row.owner_id as string, createdAt: row.created_at as string, updatedAt: row.updated_at as string });
+const db = (input: CreateCalendarEventInput | UpdateCalendarEventInput) => ({ title: input.title, description: input.description, starts_at: input.startsAt, ends_at: input.endsAt, all_day: input.allDay, color: input.color });
+export const calendarRepository = {
+  async findAll(companyId: string, from?: string, to?: string) { let query = supabaseAdmin.from("calendar_events").select("*").eq("company_id", companyId).order("starts_at"); if (from) query = query.gte("ends_at", from); if (to) query = query.lte("starts_at", to); const { data, error } = await query; if (error) throw error; return (data ?? []).map(toEvent); },
+  async findById(companyId: string, id: string) { const { data, error } = await supabaseAdmin.from("calendar_events").select("*").eq("company_id", companyId).eq("id", id).maybeSingle(); if (error) throw error; return data ? toEvent(data) : null; },
+  async create(companyId: string, ownerId: string, input: CreateCalendarEventInput) { const { data, error } = await supabaseAdmin.from("calendar_events").insert({ ...db(input), company_id: companyId, owner_id: ownerId, all_day: input.allDay ?? false, color: input.color ?? "#6366f1" }).select("*").single(); if (error) throw error; return toEvent(data); },
+  async update(companyId: string, id: string, input: UpdateCalendarEventInput) { const { data, error } = await supabaseAdmin.from("calendar_events").update(db(input)).eq("company_id", companyId).eq("id", id).select("*").maybeSingle(); if (error) throw error; return data ? toEvent(data) : null; },
+  async delete(companyId: string, id: string) { const { error } = await supabaseAdmin.from("calendar_events").delete().eq("company_id", companyId).eq("id", id); if (error) throw error; },
+};
