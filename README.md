@@ -21,8 +21,8 @@ docs/
 ## Como rodar localmente
 
 ### 1. Pré-requisitos
-- Node.js 20+
-- pnpm 9+ (`npm i -g pnpm`)
+- Node.js 22.x
+- pnpm 9.0.0 (`corepack enable`)
 - Uma conta/projeto no [Supabase](https://supabase.com)
 
 ### 2. Instalar dependências
